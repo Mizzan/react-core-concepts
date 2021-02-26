@@ -16,18 +16,9 @@ function App() {
         <Player name="Leo Messi" club="FC Barcelona" />
         <Player name="Suarez" club="Athletico Madrid" />
         <Player name="Neymar" club="Paris Saint Germain" />
-        <ProductCard
-          headingTitle={products[0].name}
-          price={products[0].price}
-        />
-        <ProductCard
-          headingTitle={products[1].name}
-          price={products[1].price}
-        />
-        <ProductCard
-          headingTitle={products[2].name}
-          price={products[2].price}
-        />
+        <ProductCard productDetails={products[0]} />
+        <ProductCard productDetails={products[1]} />
+        <ProductCard productDetails={products[2]} />
       </header>
     </div>
   );
@@ -61,10 +52,12 @@ function ProductCard(props) {
     borderRadius: "40px",
   };
 
+  const { name, price } = props.productDetails;
+
   return (
     <div style={cardStyle} className="productCard">
-      <h5>{props.headingTitle}</h5>
-      <h3>US${props.price}/mo</h3>
+      <h5>{name}</h5>
+      <h3>US${price}/mo</h3>
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde,
         laboriosam!
