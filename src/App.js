@@ -2,6 +2,12 @@ import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
+  const products = [
+    { name: "Photoshop", price: "30.99" },
+    { name: "Visual Studio Code", price: "9.99" },
+    { name: "Adobe XD", price: "14.99" },
+  ];
+
   return (
     <div className="App">
       <header className="App-header">
@@ -10,9 +16,18 @@ function App() {
         <Player name="Leo Messi" club="FC Barcelona" />
         <Player name="Suarez" club="Athletico Madrid" />
         <Player name="Neymar" club="Paris Saint Germain" />
-        <ProductCard headingTitle="Photoshop" price="30.99" />
-        <ProductCard headingTitle="Visual Studio Code" price="9.99" />
-        <ProductCard headingTitle="Adobe XD" price="14.99" />
+        <ProductCard
+          headingTitle={products[0].name}
+          price={products[0].price}
+        />
+        <ProductCard
+          headingTitle={products[1].name}
+          price={products[1].price}
+        />
+        <ProductCard
+          headingTitle={products[2].name}
+          price={products[2].price}
+        />
       </header>
     </div>
   );
