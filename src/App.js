@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -8,27 +8,30 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>React core concepts exercise and practices.</p>
-        <Counter />
+        <DynamicUsers />
       </header>
     </div>
   );
 }
 
-function Counter() {
-  const [count, setCount] = useState(0);
-  const handleIncrease = () => setCount(count + 1);
-  const handleDecrease = () => {
-    if (count > 0) {
-      setCount(count - 1);
-    }
-  };
+function DynamicUsers() {
+  const [users, setUsers] = useState(0);
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((res) => res.json())
+      .then((data) => setUsers(data));
+    // useEffect keeps running for stopping after certain work
+    // add the objects or what would be added in the end brackets.
+  }, []);
 
   return (
     <div>
-      <h1>Counter : {count}</h1>
-      <button onClick={handleIncrease}> Increase </button>
-      <br />
-      <button onClick={handleDecrease}> Decrease </button>
+      <h4>Dynamic Users : {users.length}</h4>
+      <ul>
+        {users.map((user) => (
+          <li>{user.name}</li>
+        ))}
+      </ul>
     </div>
   );
 }
