@@ -2,6 +2,11 @@ import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
+  const playerDetails = [
+    { name: "Leo Messi", club: "FC Barcelona" },
+    { name: "Suarez", club: "Athletico Madrid" },
+    { name: "Neymar", club: "Paris Saint Germain" },
+  ];
   const products = [
     { name: "Photoshop", price: "30.99" },
     { name: "Visual Studio Code", price: "9.99" },
@@ -13,12 +18,14 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>React core concepts exercise and practices.</p>
-        <Player name="Leo Messi" club="FC Barcelona" />
-        <Player name="Suarez" club="Athletico Madrid" />
-        <Player name="Neymar" club="Paris Saint Germain" />
-        <ProductCard productDetails={products[0]} />
-        <ProductCard productDetails={products[1]} />
-        <ProductCard productDetails={products[2]} />
+
+        {playerDetails.map((player) => (
+          <Player playerDetails={player}></Player>
+        ))}
+
+        {products.map((pd) => (
+          <ProductCard productDetails={pd}></ProductCard>
+        ))}
       </header>
     </div>
   );
@@ -79,6 +86,7 @@ function ProductCard(props) {
 }
 
 function Player(props) {
+  const { name, club } = props.playerDetails;
   const border = {
     border: "5px solid yellow",
     margin: "10px",
@@ -92,8 +100,9 @@ function Player(props) {
   };
   return (
     <div className="person" style={border}>
-      <h1 style={bgStyle}>Player Name: {props.name}</h1>
-      <h3>Player Club: {props.club}</h3>
+      <h1 style={bgStyle}>Player Name: {name}</h1>
+      <h3>Player Club: {club}</h3>
+      <ul></ul>
     </div>
   );
 }
