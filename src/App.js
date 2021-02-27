@@ -6,32 +6,21 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <MovieCounter></MovieCounter>
         <img src={logo} className="App-logo" alt="logo" />
         <p>React core concepts exercise and practices.</p>
-        <DynamicUsers />
       </header>
     </div>
   );
 }
 
-function DynamicUsers() {
-  const [users, setUsers] = useState(0);
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((res) => res.json())
-      .then((data) => setUsers(data));
-    // useEffect keeps running for stopping after certain work
-    // add the objects or what would be added in the end brackets.
-  }, []);
-
+function MovieCounter() {
+  const [count, setCount] = useState(0);
+  const handleClick = () => setCount(count + 1);
   return (
     <div>
-      <h4>Dynamic Users : {users.length}</h4>
-      <ul>
-        {users.map((user) => (
-          <li>{user.name}</li>
-        ))}
-      </ul>
+      <button onClick={handleClick}>Add Movie</button>
+      <h3>Number of movies : {count}</h3>
     </div>
   );
 }
